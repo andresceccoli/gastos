@@ -1,0 +1,13 @@
+{
+  "categorias_egresos": [
+    {"id": "0", "nombre": "Colegio"},
+    {"id": "1", "nombre": "Entretenimiento"},
+    {"id": "2", "nombre": "Comida"},
+    {"id": "3", "nombre": "Combustible"},
+    {"id": "4", "nombre": "Alquiler"}
+  ],
+  "categorias_ingresos": [
+    {"id": "0", "nombre": "Sueldo"},
+    {"id": "1", "nombre": "Extras"}
+  ]
+}
