@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Gastos</string>
     <string name="action_settings">Settings</string>
+    <string name="ingresos">Ingresos</string>
+    <string name="resumen">Resumen</string>
+    <string name="saldo">Saldo</string>
+    <string name="egresos">Egresos</string>
+    <string name="ingreso">Ingreso</string>
+    <string name="egreso">Egreso</string>
 </resources>

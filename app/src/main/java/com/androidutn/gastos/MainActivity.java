@@ -8,14 +8,30 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Locale;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final SimpleDateFormat MES_FORMAT = new SimpleDateFormat("MMMM yyyy", Locale.getDefault());
     private static final SimpleDateFormat MES_DB_FORMAT = new SimpleDateFormat("yyyyMM", Locale.getDefault());
+
+    @BindView(R.id.mes_anterior) ImageView mMesAnterior;
+    @BindView(R.id.mes_siguiente) ImageView mMesSiguiente;
+    @BindView(R.id.mes_text) TextView mMesText;
+    @BindView(R.id.text_ingresos) TextView mTextIngresos;
+    @BindView(R.id.text_egresos) TextView mTextEgresos;
+    @BindView(R.id.text_saldo) TextView mTextSaldo;
+
+    private Calendar mesActual;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,14 +40,27 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        ButterKnife.bind(this);
+
+        mesActual = Calendar.getInstance();
+        mostrarMes();
+
+    }
+
+    private void mostrarMes() {
+        mMesText.setText(MES_FORMAT.format(mesActual.getTime()));
+    }
+
+    @OnClick(R.id.mes_anterior)
+    public void onMesAnterior() {
+        mesActual.add(Calendar.MONTH, -1);
+        mostrarMes();
+    }
+
+    @OnClick(R.id.mes_siguiente)
+    public void onMesSiguiente() {
+        mesActual.add(Calendar.MONTH, 1);
+        mostrarMes();
     }
 
     @Override

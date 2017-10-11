@@ -20,15 +20,16 @@
             </intent-filter>
         </activity>
 
-        <!-- <activity
+
+        <activity
             android:name=".MovimientoActivity"
-            android:label="@string/title_activity_movimiento"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.androidutn.gastos.MainActivity" />
-        </activity> -->
+        </activity>
+
     </application>
 
 </manifest>

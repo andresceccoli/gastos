@@ -9,7 +9,7 @@
     tools:showIn="@layout/activity_main">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/mes_anterior"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"
@@ -21,7 +21,7 @@
         android:layout_marginStart="16dp" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/mes_siguiente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"
@@ -33,7 +33,7 @@
         android:layout_marginEnd="16dp" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/mes_text"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginEnd="8dp"
@@ -43,10 +43,10 @@
         android:gravity="center"
         android:text="septiembre 2017"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintLeft_toRightOf="@+id/imageView"
-        app:layout_constraintRight_toLeftOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintBottom_toBottomOf="@+id/mes_anterior"
+        app:layout_constraintLeft_toRightOf="@+id/mes_anterior"
+        app:layout_constraintRight_toLeftOf="@+id/mes_siguiente"
+        app:layout_constraintTop_toTopOf="@+id/mes_anterior" />
 
     <ScrollView
         android:layout_width="0dp"
@@ -59,7 +59,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/mes_text"
         app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
@@ -84,30 +84,32 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="0dp"
                         android:layout_marginTop="8dp"
-                        android:text="Ingresos"
+                        android:text="@string/ingresos"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                         app:layout_constraintLeft_toLeftOf="@+id/textView2"
                         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
                     <TextView
-                        android:id="@+id/textView4"
+                        android:id="@+id/text_ingresos"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="0dp"
-                        android:layout_marginTop="0dp"
+                        android:layout_marginTop="-17dp"
                         android:text="TextView"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textColor="@color/ingreso"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/textView5" />
 
                     <TextView
-                        android:id="@+id/textView3"
+                        android:id="@+id/text_egresos"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="0dp"
                         android:layout_marginTop="0dp"
                         android:text="TextView"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textColor="@color/egreso"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/textView9" />
 
@@ -117,7 +119,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="0dp"
                         android:layout_marginTop="0dp"
-                        android:text="Resumen"
+                        android:text="@string/resumen"
                         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -128,13 +130,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="0dp"
                         android:layout_marginTop="8dp"
-                        android:text="Saldo"
+                        android:text="@string/saldo"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                         app:layout_constraintLeft_toLeftOf="@+id/textView2"
                         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
                     <TextView
-                        android:id="@+id/textView7"
+                        android:id="@+id/text_saldo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="0dp"
@@ -150,7 +152,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="0dp"
                         android:layout_marginTop="8dp"
-                        android:text="Egresos"
+                        android:text="@string/egresos"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                         app:layout_constraintLeft_toLeftOf="@+id/textView2"
                         app:layout_constraintTop_toBottomOf="@+id/textView5" />
