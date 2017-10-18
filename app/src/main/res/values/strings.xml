@@ -7,4 +7,7 @@
     <string name="egresos">Egresos</string>
     <string name="ingreso">Ingreso</string>
     <string name="egreso">Egreso</string>
+    <string name="mov_monto_error">Debe ingresar el monto</string>
+    <string name="nuevo_ingreso">Nuevo Ingreso</string>
+    <string name="nuevo_egreso">Nuevo Egreso</string>
 </resources>

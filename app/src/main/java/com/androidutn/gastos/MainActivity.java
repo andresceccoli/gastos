@@ -1,5 +1,6 @@
 package com.androidutn.gastos;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -61,6 +62,20 @@ public class MainActivity extends AppCompatActivity {
     public void onMesSiguiente() {
         mesActual.add(Calendar.MONTH, 1);
         mostrarMes();
+    }
+
+    @OnClick(R.id.nuevo_ingreso)
+    public void onNuevoIngreso() {
+        Intent intent = new Intent(this, MovimientoActivity.class);
+        intent.putExtra(MovimientoActivity.EXTRA_INGRESO, true);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.nuevo_egreso)
+    public void onNuevoEgreso() {
+        Intent intent = new Intent(this, MovimientoActivity.class);
+        intent.putExtra(MovimientoActivity.EXTRA_INGRESO, false);
+        startActivity(intent);
     }
 
     @Override
