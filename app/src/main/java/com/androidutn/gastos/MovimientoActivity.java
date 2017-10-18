@@ -1,12 +1,23 @@
 package com.androidutn.gastos;
 
+import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
+import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.androidutn.gastos.model.Categoria;
+import com.androidutn.gastos.model.Movimiento;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -50,6 +61,34 @@ public class MovimientoActivity extends AppCompatActivity {
 
         // para toolbar
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        cargarCategorias();
+    }
+
+    private void cargarCategorias() {
+        String ref = ingreso ? "categorias_ingresos" : "categorias_egresos";
+        DatabaseReference categorias = FirebaseDatabase.getInstance().getReference(ref);
+        categorias.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                List<Categoria> cats = new ArrayList<Categoria>();
+
+                for (DataSnapshot c : dataSnapshot.getChildren()) {
+                    Categoria cat = c.getValue(Categoria.class);
+                    cats.add(cat);
+                }
+
+                mCategoria.setAdapter(new ArrayAdapter<Categoria>(
+                        MovimientoActivity.this,
+                        android.R.layout.simple_spinner_dropdown_item,
+                        cats));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @OnClick(R.id.mov_cancelar)
@@ -62,10 +101,32 @@ public class MovimientoActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(mMonto.getEditText().getText())) {
             mMonto.setError(getString(R.string.mov_monto_error));
             mMonto.setErrorEnabled(true);
+            return;
         } else {
             mMonto.setError(null);
             mMonto.setErrorEnabled(false);
         }
+
+        Movimiento mov = new Movimiento();
+        mov.setIngreso(ingreso);
+        mov.setMonto(Double.parseDouble(mMonto.getEditText().getText().toString()));
+        mov.setDescripcion(mDescripcion.getEditText().getText().toString());
+
+        Categoria categoria = (Categoria) mCategoria.getSelectedItem();
+        mov.setCategoriaKey(categoria.getId());
+        mov.setCategoriaNombre(categoria.getNombre());
+
+        Calendar fecha = mFechaInput.getDate();
+        Calendar hora = mHoraInput.getTime();
+        fecha.set(Calendar.HOUR_OF_DAY, hora.get(Calendar.HOUR_OF_DAY));
+        fecha.set(Calendar.MINUTE, hora.get(Calendar.MINUTE));
+
+        mov.setFecha(fecha.getTimeInMillis());
+        mov.setFechaRev(-mov.getFecha());
+
+        DatabaseReference movimientos = FirebaseDatabase.getInstance().getReference("movimientos");
+        String key = movimientos.push().getKey();
+        movimientos.child(key).setValue(mov);
     }
 
     @OnClick(R.id.mov_nueva_categoria)
